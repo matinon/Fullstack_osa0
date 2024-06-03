@@ -1,0 +1,21 @@
+# Muistiinpanojen Single Page App (SPA) -version lataaminen
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Navigate to /spa
+    Browser->>Server: HTTP GET /spa
+    Server-->>Browser: HTML, CSS, JavaScript files
+    Browser->>Server: HTTP GET /data.json
+    Server-->>Browser: JSON data with existing notes
+    Browser->>User: Render SPA with notes
+
+1. käyttäjä menee selaimella "/spa" osoitteeseen
+2. Selain lähettää HTTP GET -pyynnön "spa" -reitille
+3. Palvelin palauttaa HTML-, CSS- ja JavaScript-tiedostot, jotka tarvitaan SPA suorittamiseen
+4. Selain suorittaa JavaScript-koodin, joka tekee HTTP GET -pyynnön "/data.json" -reitille saadakseen olemassa olevat muistiinpanot
+5. Palvelin palauttaa JSON-datan, joka sisältää olemassa olevat muistiinpanot
+6. Selain renderöi SPA ja näyttää muistiinpanot käyttäjälle
