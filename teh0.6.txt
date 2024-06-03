@@ -1,0 +1,17 @@
+# Uuden muistiinpanon luominen Single Page App (SPA) -versiossa
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Write note and press "Save"
+    Browser->>Server: HTTP POST /new_note_spa with note content (JSON)
+    Server-->>Browser: JSON response with status and new note
+    Browser->>User: Update UI with new note
+
+1. Käyttäjä kirjoittaa muistiinpanon ja painaa "tallenna"-nappia SPA-versiossa
+2. Selain lähettää HTTP POST -pyynnön "/new_note_spa" -reitille, joka sisältää muistiinpanon sisällön JSON-muodossa
+3. Palvelin käsittelee pyynnön ja vastaa JSON-tiedolla, joka sisältää tilan ja uuden muistiinpanon tiedot
+4. Selain päivittää käyttöliittymän uudella muistiinpanolla ilman sivun uudelleenlatausta
