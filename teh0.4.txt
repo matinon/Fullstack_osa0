@@ -1,0 +1,21 @@
+# Uuden muistiinpanon luominen
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Browser
+    participant Server
+
+    User->>Browser: Write note and press "Save"
+    Browser->>Server: HTTP POST /new_note with note content
+    Server-->>Browser: HTTP 302 Redirect to /notes
+    Browser->>Server: HTTP GET /notes
+    Server-->>Browser: HTML with updated note list
+    Browser->>User: Display updated note list
+
+1. Käyttäjä kirjoittaa muistiinpanoja ja tallentaa
+2. Selain lähettää HTTP POST -pyynnön "/new_note" -reitille, joka sisältää muistiinpanon sisällön
+3. Palvelin käsittelee pyynnön ja vastaa HTTP 302 -uudelleenohjauksella "/notes" -reitille
+4. Selain tekee HTTP GET -pyynnös "/notes" -reitille saadakseen päivitetyn muistiinpanolistan
+5. Palvelin palauttaa HTML-sivun, joka sisältää päivitetyn muistiinpanolistan
+6. elain näyttää päivitetyn muistiinpanolistan käyttäjälle
